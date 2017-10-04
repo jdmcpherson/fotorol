@@ -4,6 +4,22 @@ const Express = require('express');
 // This creates an instance of a Express web app server:
 const app = Express();
 
+app.use((request, response, next) => {
+    const {method, path} = request;
+    // ^^^ This assigns the property `method` from `request` to the variable `method`.
+    // const method = request.method;
+    // const path = request.path;
+    // This is called destructuring
+
+    const message = `${method} ${path} at ${new Date()}`;
+    console.log(message);
+
+    // next is function given to middleware callbacks as an arguement.
+    // It is always the third argument. When called, Express will move
+    // on the next middleware line
+    next();
+});
+
 app.get('/', (request, response) => {
     // The 'request' object represents what the client is
     // asking of the server.
