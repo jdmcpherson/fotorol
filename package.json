@@ -24,5 +24,8 @@
   "homepage": "https://github.com/jdmcpherson/fotorol#readme",
   "dependencies": {
     "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
