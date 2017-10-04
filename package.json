@@ -1,0 +1,28 @@
+{
+  "name": "fotorol",
+  "version": "0.0.0",
+  "description": "An Exchange-A-Gram clone",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdmcpherson/fotorol.git"
+  },
+  "keywords": [
+    "exchange-a-gram",
+    "instagram",
+    "app",
+    "express"
+  ],
+  "author": "James McPherson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jdmcpherson/fotorol/issues"
+  },
+  "homepage": "https://github.com/jdmcpherson/fotorol#readme",
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
