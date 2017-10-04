@@ -4,7 +4,7 @@ const Express = require('express');
 // This creates an instance of a Express web app server:
 const app = Express();
 
-app.get('/hello-world', (request, response) => {
+app.get('/', (request, response) => {
     // The 'request' object represents what the client is
     // asking of the server.
     // The 'response' object represets the reply that our
