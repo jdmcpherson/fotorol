@@ -1,7 +1,10 @@
 const Express = require('express');
+const multer = require('multer');
+const path = require('path');
 const kx = require('../db/connection')
 const router = Express.Router();
 
+const upload = multer({dest: path.join(__dirname, '..', 'public', 'uploads')})
 
 router.get('/', (request, response) => {
 
@@ -28,9 +31,23 @@ router.get('/', (request, response) => {
     // response.render('index', { content: null });
 });
 
-router.post('/', (request, response) => {
+// To upload files with a form, form you must give it the html attribite:
+// enctype="multipart/form-data"
+
+/* <input 
+    class="form-control" 
+    name="photo" <-- "photo" is the argument to upload.single("photo")
+    type="file"
+    > */
+
+// When using multer with the '.single', only the one file is allowed to be 
+// sent and it must share the same name as the argument
+
+router.post('/', upload.single('photo'), (request, response) => {
 
     console.log(request.body);
+
+    debugger;
 
     const { body } = request;
     // ^^ this syntax suger for:
@@ -39,10 +56,13 @@ router.post('/', (request, response) => {
     // request.body's properties will be all the name attribiutes of the 
     // input fields in the submitted form. We have 'textarea' with the 'name'
     // 'content' which makes available on 'request.body'.
-    const {content} = request.body;
+    const {content, username} = request.body;
+    const {filename} = request.file;
 
+    // We do not save files to our DB. We instead save the relative URL
+    // to the file in the database.
     kx 
-        .insert({content: `Look at my ballin' post`, username: `baller_roller`})
+        .insert({content: content, username: username, photo_path: `/uploads/${filename}` })
         .into('posts')
         .then(console.log)
 

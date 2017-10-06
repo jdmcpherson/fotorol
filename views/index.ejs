@@ -2,9 +2,16 @@
 
 <div class="container-fluid">
     
-    <section class="row justify-content-center">
+    <section class="fotorol-list row justify-content-center">
         <div class="col-sm-8">
-            <form class="d-flex flex-column" action='/' method='POST'>
+            <form class="d-flex flex-column" action='/' enctype="multipart/form-data" method='POST'>
+                <div class="form-group">
+                    <input class="form-control" name="username" placeholder="Username" type="text">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="photo" type="file">
+                </div>
+
                 <div class="form-group">
                     <textarea class="form-control" rows='5' name='content' placeholder="What's on your mind?"></textarea>
                 </div>
@@ -17,7 +24,7 @@
             <div class="card-header">
               <strong><%= post.username %> </strong>
             </div>
-            <img class="card-img" src="https://i.imgur.com/9qBZMdF.jpg">
+            <img class="card-img" src="<%= post.photo_path %>">
             <div class="card-body">
               <p class="card-text">
                 <%= post.content %>
